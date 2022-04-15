@@ -1,0 +1,53 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+<mapper namespace="com.example.demo.board.EdelBoardXMLMapper">
+
+	<select id="getUserById"
+		resultType="com.example.demo.vo.EdelBoardVO"
+		parameterType="Integer">
+		SELECT title,name,content,hit,pwd,date
+		FROM edel_board
+		WHERE num = #{num}	
+	</select>
+	
+	<select id="getBoardList" resultType="com.example.demo.vo.EdelBoardVO">
+		SELECT num,title,name,hit,content,pwd,date
+		FROM edel_board
+	</select>
+	
+	<select id="getDetailList"
+		resultType="com.example.demo.vo.EdelBoardVO">
+		SELECT num,title,name,hit,content,pwd,date
+		FROM edel_board
+	</select>
+	
+	<!--insert 요소는 resultType 속성이 없어도 생성된 행의 수(정수)가 리턴됨-->
+    <insert id="insertUser" 
+    	parameterType="com.example.demo.vo.EdelBoardVO">
+    	INSERT INTO edel_board VALUES(NULL,#{title},#{name},#{hit},#{content},#{pwd},NOW())
+    </insert>
+    
+    <delete id="deleteUser" parameterType="Integer">
+    	DELETE FROM edel_board WHERE num=#{num}
+    </delete>
+    
+    <update id="updateBoard" parameterType="com.example.demo.vo.EdelBoardVO">
+    	UPDATE edel_board
+    	SET title=#{title}, content=#{content}, name=#{name}, pwd=#{pwd}
+    	WHERE num=#{num}
+    </update>
+    
+    <update id="viewCount" parameterType="Integer">
+    	UPDATE edel_board
+    	SET hit = hit + 1
+    	WHERE title=#{title}
+    </update>
+    
+	<select id="getBoardListPage"
+		parameterType="org.springframework.data.domain.Pageable"
+		resultType="com.example.demo.vo.EdelBoardVO">
+		SELECT num,title,name,hit,date,nj_url
+		FROM edel_board LIMIT #{offset}, #{pageSize}
+	</select>
+</mapper>

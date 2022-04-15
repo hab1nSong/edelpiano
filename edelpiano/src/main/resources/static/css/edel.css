@@ -1,0 +1,74 @@
+@charset "utf-8";
+html, body {margin: 0; padding: 0;} 
+
+body{
+	background: url('../Edel/main1.jpg') no-repeat center center fixed; 
+	-o-background-size:cover;
+	background-size:cover;	
+}
+
+.header {
+	padding: 0px;
+	text-align: center;
+	background: none;
+	position: relative;   
+}
+
+.header h1 {
+    font-size: 50px;
+    font-family: serif;
+}
+
+ul, ol, li { list-style:none; margin:0; padding:0; text-align:center; font-weight:bold;}
+ul.myMenu {}
+ul.myMenu > li { display:inline-block; width:150px; padding:5px 10px; border:10px; text-align:center; position:relative; }
+ul.myMenu > li:hover { background:#fff; }
+ul.myMenu > li ul.submenu { display:none; position:absolute; top:30px; left:0; text-align:center;}
+ul.myMenu > li:hover ul.submenu { display:block; }
+ul.myMenu > li ul.submenu > li { display:inline-block; width:150px; padding:5px 10px; background:white; border-bottom:1px solid #eee; text-align:center; }
+ul.myMenu > li ul.submenu > li:hover { background:#fff; }
+    
+ul a {
+	display: block;
+	color: #333;
+	text-decoration: none;
+	text-align: center;
+}
+
+.post1{padding-left:300px;}
+.post2{padding-right:300px;}
+
+.body{
+	width: 100%;
+	padding-left: 20%;
+	padding-right: 20%;
+	padding-top: 20px;
+	padding-bottom: 100px;
+}
+.grid{
+	display: inline-block;
+	
+}
+
+.contents_h2{
+	text-decoration: underline;
+	
+}
+
+#wrap{
+	min-height: 100%;
+	position: relative;
+	width: 100%;
+}
+.footer {
+    width: 100%;
+    height: 0px; /* footer의 높이 */
+    position: absolute;  
+    bottom: 0;
+    left: 0;
+    text-align: center;
+    color: black;
+    font-weight: bold;
+    font-size: 12px;
+    padding-top: 15px 0;
+}

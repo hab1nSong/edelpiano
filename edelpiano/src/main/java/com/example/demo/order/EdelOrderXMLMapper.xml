@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+<mapper namespace="com.example.demo.order.EdelOrderXMLMapper">
+
+	<select id="getUserById"
+		resultType="com.example.demo.vo.EdelOrderVO"
+		parameterType="Integer">
+		SELECT num,name,detail,price,total,orddate,file,thumbnail
+		FROM edel_order
+		WHERE num = #{num}	
+	</select>
+	
+	<select id="getUserList"
+		resultType="com.example.demo.vo.EdelOrderVO">
+		SELECT num,name,detail,price,total,orddate,file,thumbnail
+		FROM edel_order
+	</select>
+	
+	<select id="getDetailList"
+		resultType="com.example.demo.vo.EdelOrderVO">
+		SELECT num,name,detail,price,total,orddate,file,thumbnail
+		FROM edel_order
+	</select>
+	
+	<!--insert 요소는 resultType 속성이 없어도 생성된 행의 수(정수)가 리턴됨-->
+    <insert id="insertUser" 
+    	parameterType="com.example.demo.vo.EdelOrderVO">
+    	INSERT INTO edel_order VALUES(NULL,#{name},#{detail},#{price},#{total},NOW(),#{file},#{thumbnail})
+    </insert>
+    
+    <delete id="deleteUser" parameterType="Integer">
+    	DELETE FROM edel_order WHERE num=#{num}
+    </delete>
+    
+    <update id="updateOrder" parameterType="com.example.demo.vo.EdelOrderVO">
+    	UPDATE edel_order
+    	SET name=#{name}, detail=#{detail}, price=#{price}, total=#{total}, thumbnail=#{thumbnail}, file=#{file}
+    	WHERE num=#{num}
+    </update>
+</mapper>
+

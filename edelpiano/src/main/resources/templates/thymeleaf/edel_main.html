@@ -1,0 +1,21 @@
+<!DOCTYPE html> 
+<html xmlns="http://www.w3.org/1999/xhtml" 
+   xmlns:th="http://www.thymeleaf.org" 
+   xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+   <head>
+      <meta charset="utf-8">
+      <title>Edel Piano Test</title> 
+      <link href="/css/edel.css" rel="stylesheet" />
+   </head>
+   <body>
+      <th:block th:include="@{/fragments/edel_header}"></th:block> 
+
+      <div class="content">
+         <h2>This is Content</h2>
+         <th:block th:include="@{/fragments/edel_body}"></th:block>
+         <div th:each="item : ${edel}" th:text="${item}"></div>
+      </div> 
+      
+      <th:block th:include="@{/fragments/edel_footer}"></th:block> 
+   </body>
+</html>

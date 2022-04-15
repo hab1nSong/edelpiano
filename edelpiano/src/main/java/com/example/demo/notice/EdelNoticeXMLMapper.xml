@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+<mapper namespace="com.example.demo.notice.EdelNoticeXMLMapper">
+
+	<select id="getUserById"
+		resultType="com.example.demo.vo.EdelNoticeVO"
+		parameterType="Integer">
+		SELECT title,name,content,num,nj_url
+		FROM edel_notice
+		WHERE num = #{num}	
+	</select>
+	
+	<select id="getNoticeList" resultType="com.example.demo.vo.EdelNoticeVO">
+		SELECT num,title,name,hit,date,nj_url
+		FROM edel_notice
+	</select>
+	
+	<select id="getDetailList"
+		resultType="com.example.demo.vo.EdelNoticeVO">
+		SELECT title,name,hit,content,nj_url
+		FROM edel_notice
+	</select>
+	
+	<!--insert 요소는 resultType 속성이 없어도 생성된 행의 수(정수)가 리턴됨-->
+    <insert id="insertUser" 
+    	parameterType="com.example.demo.vo.EdelNoticeVO">
+    	INSERT INTO edel_notice VALUES(NULL,#{title},#{name},#{content},NULL,NOW(),#{nj_url})
+    </insert>
+    
+    <delete id="deleteUser" parameterType="Integer">
+    	DELETE FROM edel_notice WHERE num=#{num}
+    </delete>
+    
+    <update id="updateNotice" parameterType="com.example.demo.vo.EdelNoticeVO">
+    	UPDATE edel_notice
+    	SET title=#{title}, content=#{content}
+    	WHERE num=#{num}
+    </update>
+    
+    <update id="viewCount" parameterType="Integer">
+    	UPDATE edel_notice
+    	SET hit = hit + 1
+    	WHERE title=#{title}
+    </update>
+    
+	<select id="getNoticeListPage"
+		parameterType="org.springframework.data.domain.Pageable"
+		resultType="com.example.demo.vo.EdelNoticeVO">
+		SELECT num,title,name,hit,date,nj_url
+		FROM edel_notice LIMIT #{offset}, #{pageSize}
+	</select>
+</mapper>
+

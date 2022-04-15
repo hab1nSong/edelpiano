@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+<mapper namespace="com.example.demo.main.EdelUserXMLMapper">
+
+	<select id="getUserById"
+		resultType="com.example.demo.vo.EdelVO"
+		parameterType="Integer">
+		SELECT id,pwd,phone,email
+		FROM edel_user
+		WHERE num = #{num}	
+	</select>
+	
+	<select id="getUser" resultType="com.example.demo.vo.EdelVO">
+		SELECT * FROM edel_user WHERE id=#{id} AND pwd=#{pwd}
+	</select>
+	
+	<select id="getUserList" resultType="com.example.demo.vo.EdelVO">
+		SELECT num,id,pwd,phone,email
+		FROM edel_user
+	</select>
+	
+	<!--insert 요소는 resultType 속성이 없어도 생성된 행의 수(정수)가 리턴됨-->
+    <insert id="insertUser" 
+    	parameterType="com.example.demo.vo.EdelVO">
+    	INSERT INTO edel_user VALUES(NULL,#{id},#{pwd},#{phone},#{email})
+    </insert>
+    
+    <delete id="deleteUser" parameterType="Integer">
+    	DELETE FROM edel_user WHERE num=#{num}
+    </delete>
+    
+    <update id="updateUser" parameterType="com.example.demo.vo.EdelVO">
+    	UPDATE edel_user
+    	SET phone=#{phone}, email=#{email}
+    	WHERE num=#{num}
+    </update>
+</mapper>
+

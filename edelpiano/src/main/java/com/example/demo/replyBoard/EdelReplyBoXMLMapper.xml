@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+<mapper namespace="com.example.demo.replyBoard.EdelReplyBoXMLMapper">
+
+	<select id="getUserById"
+		resultType="com.example.demo.vo.EdelReplyBoVO"
+		parameterType="Integer">
+		SELECT reply_num,reply_name,content,date
+		FROM edel_reply
+		WHERE num = #{num}	
+	</select>
+	
+	<select id="getReplyList" resultType="com.example.demo.vo.EdelReplyBoVO">
+		SELECT reply_num,num,reply_name,content,date
+		FROM edel_reply
+	</select>
+	
+	<select id="getDetailList" resultType="com.example.demo.vo.EdelReplyBoVO">
+		SELECT reply_num,num,reply_name,content,date
+		FROM edel_reply
+		WHERE num = #{num}
+	</select>
+	
+	<!--insert 요소는 resultType 속성이 없어도 생성된 행의 수(정수)가 리턴됨-->
+    <insert id="insertReply" 
+    	parameterType="com.example.demo.vo.EdelReplyBoVO">
+    	INSERT INTO edel_reply VALUES(NULL,#{num},#{reply_name},#{content},NOW())
+    </insert>
+    
+    <delete id="deleteReply" parameterType="Integer">
+    	DELETE FROM edel_reply WHERE num=#{num}
+    </delete>
+    
+    <update id="updateReply" parameterType="com.example.demo.vo.EdelReplyBoVO">
+    	UPDATE edel_reply
+    	SET content=#{content}
+    	WHERE num=#{num}
+    </update>
+</mapper>
+
